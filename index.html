@@ -30,17 +30,28 @@
         data-otp-required="false"
     ></section>
 
-    <script type="text/javascript">
-      // 1. Get the URL parameters immediately
-      const urlParams = new URLSearchParams(window.location.search);
-      const phone = urlParams.get('data-patient-phone') || urlParams.get(' data-patient-phone');
+<script type="text/javascript">
+  // 1. Get the URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  
+  // 2. Extract the Phone and the Lead ID from the URL
+  const phone = urlParams.get('data-patient-phone');
+  const leadId = urlParams.get('data-lead-id');
 
-      // 2. If a phone number exists, put it into the 'data-patient-phone' attribute of the section
-      if (phone) {
-        const widgetSection = document.getElementById('buktor-widget');
-        widgetSection.setAttribute('data-patient-phone', phone.trim());
-      }
-    </script>
+  // 3. Find the Buktor section
+  const widgetSection = document.getElementById('buktor-widget');
+
+  if (widgetSection) {
+    // Inject Phone if it exists
+    if (phone) {
+      widgetSection.setAttribute('data-patient-phone', phone.trim());
+    }
+    // Inject Lead ID if it exists
+    if (leadId) {
+      widgetSection.setAttribute('data-lead-id', leadId.trim());
+    }
+  }
+</script>
       
     <script
       type="text/javascript"
