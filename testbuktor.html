@@ -7,7 +7,8 @@
   </head>
   <body>
 
-  <section
+    <section
+        id="buktor-widget"
         class="buktor-container"
         data-url="https://www.buktor.com"
         data-slug="abateeyehospital"
@@ -27,25 +28,29 @@
         data-appointment-callback-id=""
         data-appointment-details-button=""
         data-otp-required="false"
-        ></section>
+    ></section>
+
+    <script type="text/javascript">
+      // 1. Get the URL parameters immediately
+      const urlParams = new URLSearchParams(window.location.search);
+      const phone = urlParams.get('data-patient-phone') || urlParams.get(' data-patient-phone');
+
+      // 2. If a phone number exists, put it into the 'data-patient-phone' attribute of the section
+      if (phone) {
+        const widgetSection = document.getElementById('buktor-widget');
+        widgetSection.setAttribute('data-patient-phone', phone.trim());
+      }
+    </script>
       
-      <script
-        type="text/javascript"
-        src="https://buktor.com/assets/abate-embed.js"
-      ></script>
-      <script>
-        document.addEventListener("Success", function (event) {
-          // pass event.details the storing function
-          // console.log(event);
-        });
+    <script
+      type="text/javascript"
+      src="https://buktor.com/assets/abate-embed.js"
+    ></script>
 
-        document.addEventListener("Failed", function (event) {
-          // pass event.details the storing function
-        });
-
-        document.addEventListener("Updated", function (event) {
-          // pass event.details the storing function
-        });
-      </script> 
+    <script>
+      document.addEventListener("Success", function (event) { });
+      document.addEventListener("Failed", function (event) { });
+      document.addEventListener("Updated", function (event) { });
+    </script> 
   </body>
 </html>
