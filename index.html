@@ -46,6 +46,22 @@
         document.addEventListener("Updated", function (event) {
           // pass event.details the storing function
         });
+        window.onload = function() {
+    // 1. Get the parameters from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // 2. Get the phone number (check both with and without the space just in case)
+    const phone = urlParams.get('data-patient-phone') || urlParams.get(' data-patient-phone');
+    
+    // 3. Put it into the input field
+    // Note: Make sure your phone input tag has id="phone" or change the selector below
+    if (phone) {
+        const phoneInput = document.querySelector('input[type="tel"]') || document.querySelector('input[placeholder*="9876543210"]');
+        if (phoneInput) {
+            phoneInput.value = phone;
+        }
+    }
+};
       </script> 
   </body>
 </html>
